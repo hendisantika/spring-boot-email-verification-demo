@@ -1,10 +1,14 @@
 package id.my.hendisantika.springbootemailverificationdemo.security;
 
+import id.my.hendisantika.springbootemailverificationdemo.entity.User;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by IntelliJ IDEA.
@@ -23,4 +27,14 @@ public class UserRegistrationDetails implements UserDetails {
     private String password;
     private boolean isEnabled;
     private List<GrantedAuthority> authorities;
+
+    public UserRegistrationDetails(User user) {
+        this.userName = user.getEmail();
+        this.password = user.getPassword();
+        this.isEnabled = user.isEnabled();
+        this.authorities = Arrays.stream(user.getRole()
+                        .split(","))
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
+    }
 }
