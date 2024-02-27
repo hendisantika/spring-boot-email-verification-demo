@@ -9,6 +9,7 @@ import id.my.hendisantika.springbootemailverificationdemo.repository.Verificatio
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Calendar;
 import java.util.List;
@@ -35,6 +36,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    @Transactional
     public User registerUser(RegistrationRequest request) {
         Optional<User> user = this.findByEmail(request.email());
         if (user.isPresent()) {
@@ -54,11 +56,13 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
+    @Transactional
     public void saveUserVerificationToken(User theUser, String token) {
         var verificationToken = new VerificationToken(token, theUser);
         tokenRepository.save(verificationToken);
     }
 
+    @Transactional
     public String validateToken(String theToken) {
         VerificationToken token = tokenRepository.findByToken(theToken);
         if (token == null) {
