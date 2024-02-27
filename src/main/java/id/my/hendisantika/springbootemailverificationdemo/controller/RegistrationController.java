@@ -54,4 +54,8 @@ public class RegistrationController {
         }
         return "Invalid verification token";
     }
+
+    public String applicationUrl(HttpServletRequest request) {
+        return "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+    }
 }
