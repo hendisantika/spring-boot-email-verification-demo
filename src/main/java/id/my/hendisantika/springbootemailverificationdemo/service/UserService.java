@@ -1,5 +1,6 @@
 package id.my.hendisantika.springbootemailverificationdemo.service;
 
+import id.my.hendisantika.springbootemailverificationdemo.dto.RegistrationRequest;
 import id.my.hendisantika.springbootemailverificationdemo.entity.User;
 import id.my.hendisantika.springbootemailverificationdemo.entity.VerificationToken;
 import id.my.hendisantika.springbootemailverificationdemo.repository.UserRepository;
