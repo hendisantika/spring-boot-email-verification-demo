@@ -1,6 +1,7 @@
 package id.my.hendisantika.springbootemailverificationdemo.service;
 
 import id.my.hendisantika.springbootemailverificationdemo.entity.User;
+import id.my.hendisantika.springbootemailverificationdemo.entity.VerificationToken;
 import id.my.hendisantika.springbootemailverificationdemo.repository.UserRepository;
 import id.my.hendisantika.springbootemailverificationdemo.repository.VerificationTokenRepository;
 import lombok.RequiredArgsConstructor;
@@ -48,5 +49,10 @@ public class UserService {
 
     public Optional<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    public void saveUserVerificationToken(User theUser, String token) {
+        var verificationToken = new VerificationToken(token, theUser);
+        tokenRepository.save(verificationToken);
     }
 }
