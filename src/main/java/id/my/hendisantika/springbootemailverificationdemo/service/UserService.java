@@ -1,10 +1,13 @@
 package id.my.hendisantika.springbootemailverificationdemo.service;
 
+import id.my.hendisantika.springbootemailverificationdemo.entity.User;
 import id.my.hendisantika.springbootemailverificationdemo.repository.UserRepository;
 import id.my.hendisantika.springbootemailverificationdemo.repository.VerificationTokenRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -22,4 +25,8 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final VerificationTokenRepository tokenRepository;
+
+    public List<User> getUsers() {
+        return userRepository.findAll();
+    }
 }
