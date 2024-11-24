@@ -1,0 +1,10 @@
+services:
+  database:
+    image: mysql:9.1.0
+    environment:
+      MYSQL_DATABASE: registration_db
+      MYSQL_ROOT_PASSWORD: 53cret
+      MYSQL_USER: hendisantika
+      MYSQL_PASSWORD: 53cret
+    ports:
+      - "3307:3306"

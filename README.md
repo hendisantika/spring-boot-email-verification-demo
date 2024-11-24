@@ -8,6 +8,22 @@
 4. Run the application: `mvn clean spring-boot:run`
 5. Open HTTP Client App (Postman, Insomnia or API Dog)
 
+Add New User
+
+```shell
+###
+POST http://localhost:8081/register
+Content-Type: application/json
+
+{
+  "firstName": "ITADORI",
+  "lastName": "YUJI",
+  "email": "yuji@yopmail.com",
+  "password": "1234",
+  "role": "ADMIN"
+}
+```
+
 ### Image Screenshot
 
 Send E-Mail API
