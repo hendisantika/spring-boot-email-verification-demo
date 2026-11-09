@@ -14,7 +14,7 @@
     <name>spring-boot-email-verification-demo</name>
     <description>spring-boot-email-verification-demo</description>
     <properties>
-        <java.version>21</java.version>
+        <java.version>25</java.version>
     </properties>
     <dependencies>
         <dependency>
