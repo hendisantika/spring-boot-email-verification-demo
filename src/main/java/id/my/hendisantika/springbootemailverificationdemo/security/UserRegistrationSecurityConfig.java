@@ -2,7 +2,9 @@ package id.my.hendisantika.springbootemailverificationdemo.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,15 +31,13 @@ public class UserRegistrationSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.cors()
-                .and().csrf().disable()
-                .authorizeHttpRequests()
-                .requestMatchers("/register/**")
-                .permitAll()
-                .and()
-                .authorizeHttpRequests()
-                .requestMatchers("/users", "/users/**")
-                .hasAnyAuthority("USER", "ADMIN")
-                .and().formLogin().and().build();
+        return http
+                .cors(Customizer.withDefaults())
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/register/**").permitAll()
+                        .requestMatchers("/users", "/users/**").hasAnyAuthority("USER", "ADMIN"))
+                .formLogin(Customizer.withDefaults())
+                .build();
     }
 }

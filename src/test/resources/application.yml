@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:registration_db;MODE=MySQL;DB_CLOSE_DELAY=-1;NON_KEYWORDS=USER
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+  docker:
+    compose:
+      enabled: false
+  mail:
+    host: localhost
+    port: 2525
+    username: test
+    password: test
