@@ -1,6 +1,6 @@
 services:
   database:
-    image: mysql:9.1.0
+    image: mysql:26.10.0
     environment:
       MYSQL_DATABASE: registration_db
       MYSQL_ROOT_PASSWORD: 53cret
